@@ -1,0 +1,55 @@
+﻿@page "/teaminfo"
+
+@using TeamSite.Data
+@inject SpecialInstructionService InstructionService
+
+<h1>Team Data</h1>
+
+@if (specialInstructions == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Account Number</th>
+                <th>Notes</th>
+                <th>Entered By</th>
+                <th>Entered Date</th>
+            </tr>            
+        </thead>
+        <tbody>
+            @foreach(var inst in specialInstructions)
+            {
+                <tr>
+                    <td>@inst.Id</td>
+                    <td>@inst.AccountNumber</td>
+                    <td>@inst.Notes</td>
+                    <td>@inst.EnteredBy</td>
+                    <td>@inst.EnteredDate.ToShortDateString()</td>
+                </tr>
+            }
+            <tr>
+                <td><button title="Add" @onclick="AddEmptyRow">Add</button></td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private List<SpecialInstruction> specialInstructions;
+
+    protected override async Task OnInitializedAsync()
+    {
+        specialInstructions = await InstructionService.GetSpecialInstructionAsync();
+    }
+
+    protected void AddEmptyRow()
+    {
+        specialInstructions.Add(new SpecialInstruction { EnteredBy = "me2", EnteredDate = DateTime.Now });
+    }
+}
