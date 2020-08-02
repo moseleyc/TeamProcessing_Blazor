@@ -3,9 +3,30 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5AE6D3FB-28EE-453B-AD41-876621A9337C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{2CD025C5-D594-482E-A14F-8270F38DC29F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ABAEC1F9-2BBE-4A5A-8600-C8B26E538507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamSite", "TeamSite\TeamSite.csproj", "{AF679999-57BD-45E3-98C9-11393D90FCC8}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF679999-57BD-45E3-98C9-11393D90FCC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF679999-57BD-45E3-98C9-11393D90FCC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF679999-57BD-45E3-98C9-11393D90FCC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF679999-57BD-45E3-98C9-11393D90FCC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AF679999-57BD-45E3-98C9-11393D90FCC8} = {5AE6D3FB-28EE-453B-AD41-876621A9337C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C352BE8-8CBF-43C6-A4A5-3A4BD2013D58}
