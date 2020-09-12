@@ -1,6 +1,6 @@
 using System;
 
-namespace TeamSite.Data
+namespace TeamSite.Classes.WeatherForecast
 {
     public class WeatherForecast
     {

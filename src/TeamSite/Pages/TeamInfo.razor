@@ -1,7 +1,9 @@
 ﻿@page "/teaminfo"
 
-@using TeamSite.Data
+@using TeamSite.Classes.TeamSite
+@using TeamSite.Services
 @inject SpecialInstructionService InstructionService
+@inject AuthenticationStateProvider  AuthenticationStateProvider
 
 <h1>Team Data</h1>
 
@@ -19,10 +21,10 @@ else
                 <th>Notes</th>
                 <th>Entered By</th>
                 <th>Entered Date</th>
-            </tr>            
+            </tr>
         </thead>
         <tbody>
-            @foreach(var inst in specialInstructions)
+            @foreach (var inst in specialInstructions)
             {
                 <tr>
                     <td>@inst.Id</td>
@@ -50,6 +52,12 @@ else
 
     protected void AddEmptyRow()
     {
-        specialInstructions.Add(new SpecialInstruction { EnteredBy = "me2", EnteredDate = DateTime.Now });
+        var authState = AuthenticationStateProvider.GetAuthenticationStateAsync().Result;
+        string userName = "Unknown";
+        if(authState.User.Identity.IsAuthenticated)
+        {
+            userName = authState.User.Identity.Name;
+        }
+        specialInstructions.Add(new SpecialInstruction { EnteredBy = userName, EnteredDate = DateTime.Now });
     }
 }

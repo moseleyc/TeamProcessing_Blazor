@@ -1,8 +1,9 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using TeamSite.Classes.WeatherForecast;
 
-namespace TeamSite.Data
+namespace TeamSite.Services
 {
     public class WeatherForecastService
     {

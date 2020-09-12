@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{2CD025C5-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ABAEC1F9-2BBE-4A5A-8600-C8B26E538507}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamSite", "src\TeamSite\TeamSite.csproj", "{1B584503-A229-4211-BB48-E0026F469DCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamSite", "src\TeamSite\TeamSite.csproj", "{1B584503-A229-4211-BB48-E0026F469DCC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataSource", "DataSource", "{158D1A94-A2C0-47C4-95A1-00D5C9A234D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1B584503-A229-4211-BB48-E0026F469DCC} = {5AE6D3FB-28EE-453B-AD41-876621A9337C}
+		{158D1A94-A2C0-47C4-95A1-00D5C9A234D9} = {5AE6D3FB-28EE-453B-AD41-876621A9337C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C352BE8-8CBF-43C6-A4A5-3A4BD2013D58}

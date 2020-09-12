@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using TeamSite.Classes.TeamSite;
 
-namespace TeamSite.Data
+namespace TeamSite.Services
 {
     public class SpecialInstructionService
     {         

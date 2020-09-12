@@ -15,6 +15,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TeamSite.Areas.Identity;
 using TeamSite.Data;
+using System.IO;
+using TeamSite.Services;
 
 namespace TeamSite
 {
@@ -31,9 +33,13 @@ namespace TeamSite
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            Console.WriteLine($"INFO: {Configuration.GetConnectionString("DefaultConnection")}: Directory {Directory.GetCurrentDirectory()}");
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(
+                    Configuration.GetConnectionString("DefaultConnection"))
+                //options.UseSqlServer(
+                //    Configuration.GetConnectionString("DefaultConnection"))
+                );
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
