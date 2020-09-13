@@ -37,16 +37,21 @@ namespace ManagedAccountsWeb
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection"))
-                //options.UseSqlServer(
-                //    Configuration.GetConnectionString("DefaultConnection"))
                 );
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+
+            //services.AddHttpClient<ISpecialInstructionService, SpecialInstructionService>(client =>
+            //{
+            //    client.BaseAddress = new Uri("https://localhost:5003/");
+            //})
+            //    .SetHandlerLifetime(TimeSpan.FromMinutes(1));
+
             services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<SpecialInstructionService>();
+            services.AddSingleton<ISpecialInstructionService, SpecialInstructionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
