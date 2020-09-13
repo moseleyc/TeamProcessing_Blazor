@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using TeamSite.Classes.WeatherForecast;
+using ManagedAccountClasses.WeatherForecast;
 
-namespace TeamSite.Services
+namespace ManagedAccountsWeb.Services
 {
     public class WeatherForecastService
     {

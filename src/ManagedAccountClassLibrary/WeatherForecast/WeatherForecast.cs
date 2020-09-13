@@ -1,6 +1,6 @@
 using System;
 
-namespace ManagedAccount.WeatherForecast
+namespace ManagedAccountClasses.WeatherForecast
 {
     public class WeatherForecast
     {

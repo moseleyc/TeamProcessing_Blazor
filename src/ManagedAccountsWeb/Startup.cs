@@ -13,12 +13,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TeamSite.Areas.Identity;
-using TeamSite.Data;
+using ManagedAccountsWeb.Areas.Identity;
+using ManagedAccountsWeb.Data;
 using System.IO;
-using TeamSite.Services;
+using ManagedAccountsWeb.Services;
 
-namespace TeamSite
+namespace ManagedAccountsWeb
 {
     public class Startup
     {

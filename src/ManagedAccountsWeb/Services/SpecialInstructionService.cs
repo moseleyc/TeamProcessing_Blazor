@@ -1,9 +1,9 @@
-﻿using ManagedAccount.TeamSite;
+﻿using ManagedAccountClasses.TeamSite;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace TeamSite.Services
+namespace ManagedAccountsWeb.Services
 {
     public class SpecialInstructionService
     {         

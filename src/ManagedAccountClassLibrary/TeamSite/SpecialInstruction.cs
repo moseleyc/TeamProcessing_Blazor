@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ManagedAccount.TeamSite
+namespace ManagedAccountClasses.TeamSite
 {
     public class SpecialInstruction
     {

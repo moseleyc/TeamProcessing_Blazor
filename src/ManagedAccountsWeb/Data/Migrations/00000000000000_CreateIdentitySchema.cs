@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TeamSite.Data.Migrations
+namespace ManagedAccountsWeb.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

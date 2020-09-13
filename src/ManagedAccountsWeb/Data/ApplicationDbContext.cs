@@ -1,9 +1,9 @@
 ﻿using System;
-using ManagedAccount.TeamSite;
+using ManagedAccountClasses.TeamSite;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace TeamSite.Data
+namespace ManagedAccountsWeb.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
