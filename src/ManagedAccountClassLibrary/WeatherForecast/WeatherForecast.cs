@@ -1,6 +1,6 @@
 using System;
 
-namespace TeamSite.Classes.WeatherForecast
+namespace ManagedAccount.WeatherForecast
 {
     public class WeatherForecast
     {
