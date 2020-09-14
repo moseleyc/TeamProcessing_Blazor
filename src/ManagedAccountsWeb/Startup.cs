@@ -17,6 +17,7 @@ using ManagedAccountsWeb.Areas.Identity;
 using ManagedAccountsWeb.Data;
 using System.IO;
 using ManagedAccountsWeb.Services;
+using System.Net.Http;
 
 namespace ManagedAccountsWeb
 {
@@ -44,14 +45,16 @@ namespace ManagedAccountsWeb
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 
-            //services.AddHttpClient<ISpecialInstructionService, SpecialInstructionService>(client =>
-            //{
-            //    client.BaseAddress = new Uri("https://localhost:5003/");
-            //})
-            //    .SetHandlerLifetime(TimeSpan.FromMinutes(1));
+            services.AddHttpClient<ISpecialInstructionService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5003/");
+            })
+                .SetHandlerLifetime(TimeSpan.FromMinutes(1));
+            services.AddScoped<ISpecialInstructionService, SpecialInstructionService>();
 
+            //services.AddSingleton<IHttpClientFactory, HttpClientFactory>();
             services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<ISpecialInstructionService, SpecialInstructionService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

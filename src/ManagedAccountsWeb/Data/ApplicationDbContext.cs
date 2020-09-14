@@ -11,7 +11,5 @@ namespace ManagedAccountsWeb.Data
             : base(options)
         {
         }
-
-        public DbSet<SpecialInstruction> TeamSite { get; set; }
     }
 }

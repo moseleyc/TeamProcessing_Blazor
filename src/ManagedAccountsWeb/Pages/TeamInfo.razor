@@ -2,7 +2,7 @@
 
 @using ManagedAccountClasses.TeamSite
 @using ManagedAccountsWeb.Services
-@inject SpecialInstructionService InstructionService
+@inject ISpecialInstructionService InstructionService
 @inject AuthenticationStateProvider  AuthenticationStateProvider
 
 <h1>Team Data</h1>
@@ -50,7 +50,7 @@ else
         specialInstructions = await InstructionService.GetSpecialInstructionAsync();
     }
 
-    protected void AddEmptyRow()
+    protected async void AddEmptyRow()
     {
         var authState = AuthenticationStateProvider.GetAuthenticationStateAsync().Result;
         string userName = "Unknown";
@@ -58,6 +58,21 @@ else
         {
             userName = authState.User.Identity.Name;
         }
-        specialInstructions.Add(new SpecialInstruction { EnteredBy = userName, EnteredDate = DateTime.Now });
+
+        var specialInstruction = new SpecialInstruction
+        {
+            AccountNumber = "T00003A2",
+            Notes = $"This was added {DateTime.Now:hhmmss}",
+            EnteredBy = userName,
+            EnteredDate = DateTime.Now
+        };
+
+        var isSuccessful = await InstructionService.AddSpecialInstructionAsync(specialInstruction);
+        if (isSuccessful)
+        {
+            specialInstructions = await InstructionService.GetSpecialInstructionAsync();
+            base.StateHasChanged();
+        }
+        //specialInstructions.Add(new SpecialInstruction { EnteredBy = userName, EnteredDate = DateTime.Now });
     }
 }
