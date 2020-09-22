@@ -28,14 +28,33 @@ else
             {
                 <tr>
                     <td>@inst.Id</td>
-                    <td>@inst.AccountNumber</td>
-                    <td>@inst.Notes</td>
-                    <td>@inst.EnteredBy</td>
+                    <td>
+                        <input type="text" class="form-control" @bind="@inst.AccountNumber" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" @bind="@inst.Notes" />
+                    </td>
+                    <td>@inst.EnteredBy"</td>
                     <td>@inst.EnteredDate.ToShortDateString()</td>
+                    <td>
+                        <button type="button" title="Edit" onclick="EditSpecialInstructions(@inst.Id)">Edit</button>
+                    </td>
                 </tr>
             }
+        <tr>
+            <td></td>
+            <td>
+                <input type="text" class="form-control" @bind="@NewSpecialInstruction.AccountNumber"/>
+            </td>
+            <td>
+                <input type="text" class="form-control" @bind="@NewSpecialInstruction.Notes"/>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
             <tr>
-                <td><button title="Add" @onclick="AddEmptyRow">Add</button></td>
+                <td><button title="Add" @onclick="AddRow">Add</button>
+                    </td>
             </tr>
         </tbody>
     </table>
@@ -44,35 +63,43 @@ else
 @code
 {
     private List<SpecialInstruction> specialInstructions;
+    protected SpecialInstruction NewSpecialInstruction = new SpecialInstruction();
 
-    protected override async Task OnInitializedAsync()
+    protected async override Task OnInitializedAsync()
     {
-        specialInstructions = await InstructionService.GetSpecialInstructionAsync();
+        specialInstructions = await InstructionService.GetAllSpecialInstructionsAsync();
     }
 
-    protected async void AddEmptyRow()
+    protected async void AddRow()
     {
         var authState = AuthenticationStateProvider.GetAuthenticationStateAsync().Result;
         string userName = "Unknown";
-        if(authState.User.Identity.IsAuthenticated)
+        if (authState.User.Identity.IsAuthenticated)
         {
             userName = authState.User.Identity.Name;
         }
 
-        var specialInstruction = new SpecialInstruction
-        {
-            AccountNumber = "T00003A2",
-            Notes = $"This was added {DateTime.Now:hhmmss}",
-            EnteredBy = userName,
-            EnteredDate = DateTime.Now
-        };
+        NewSpecialInstruction.EnteredBy = userName;
+        NewSpecialInstruction.EnteredDate = DateTime.Now;
 
-        var isSuccessful = await InstructionService.AddSpecialInstructionAsync(specialInstruction);
+        var isSuccessful = InstructionService.AddSpecialInstruction(NewSpecialInstruction);
         if (isSuccessful)
         {
-            specialInstructions = await InstructionService.GetSpecialInstructionAsync();
-            base.StateHasChanged();
+            await RefreshState();
         }
-        //specialInstructions.Add(new SpecialInstruction { EnteredBy = userName, EnteredDate = DateTime.Now });
+    }
+
+    protected async void EditSpecialInstructions(int id)
+    {
+        InstructionService.EditSpecialInstruction(specialInstructions.FirstOrDefault(x => x.Id == id));
+
+        await RefreshState();
+    }
+
+    private async Task RefreshState()
+    {
+        specialInstructions = await InstructionService.GetAllSpecialInstructionsAsync();
+        NewSpecialInstruction = new SpecialInstruction();
+        base.StateHasChanged();
     }
 }

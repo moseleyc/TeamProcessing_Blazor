@@ -8,51 +8,53 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using ManagedAccountsWeb.Data.Migrations;
 
 namespace ManagedAccountsWeb.Services
 {
     public class SpecialInstructionService : ISpecialInstructionService
     {
         private readonly ILogger _logger;
+        private readonly TeamSiteDbContext _dbContext;
         private List<SpecialInstruction> SpecialInstructions { get; set; }
 
-        public SpecialInstructionService(ILogger<SpecialInstructionService> logger)
+        public SpecialInstructionService(ILogger<SpecialInstructionService> logger, TeamSiteDbContext dbContext)
         {
             _logger = logger;
-
-            SpecialInstructions = GetSpecialInstructionsInitialSetup();
+            _dbContext = dbContext;
         }
 
-
-        public async Task<List<SpecialInstruction>> GetSpecialInstructionAsync()
+        public async Task<List<SpecialInstruction>> GetAllSpecialInstructionsAsync()
         {
-            return SpecialInstructions;
+            return _dbContext.SpecialInstructions.ToList();
         }
 
-        public async Task<bool> AddSpecialInstructionAsync(SpecialInstruction specialInstruction)
+        public bool AddSpecialInstruction(SpecialInstruction specialInstruction)
         {
-            SpecialInstructions.Add(specialInstruction);
-
-            if(SpecialInstructions.Any(x => x.Equals(specialInstruction)))
+            try
             {
-                return true;
+                _dbContext.Add(specialInstruction);
+                return _dbContext.SaveChanges() != 0;
             }
+            catch
+            {
 
+            }
             return false;
         }
 
-        private List<SpecialInstruction> GetSpecialInstructionsInitialSetup()
+        public bool EditSpecialInstruction(SpecialInstruction specialInstruction)
         {
-            return new List<SpecialInstruction>
+            try
             {
-                new SpecialInstruction
-                {
-                    AccountNumber = "T00002A1",
-                    Notes = "Nothing to see here",
-                    EnteredBy = "hjunata@gmail.com",
-                    EnteredDate = DateTime.Now
-                }
-            };
+                _dbContext.Entry(specialInstruction).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                return _dbContext.SaveChanges() != 0;
+            }
+            catch
+            {
+
+            }
+            return false;
         }
     }
 }

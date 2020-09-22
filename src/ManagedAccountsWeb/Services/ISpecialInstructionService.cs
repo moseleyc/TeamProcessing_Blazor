@@ -6,8 +6,10 @@ namespace ManagedAccountsWeb.Services
 {
     public interface ISpecialInstructionService
     {
-        public Task<List<SpecialInstruction>> GetSpecialInstructionAsync();
+        public Task<List<SpecialInstruction>> GetAllSpecialInstructionsAsync();
 
-        public Task<bool> AddSpecialInstructionAsync(SpecialInstruction specialInstruction);
+        public bool AddSpecialInstruction(SpecialInstruction specialInstruction);
+
+        public bool EditSpecialInstruction(SpecialInstruction specialInstruction);
     }
 }

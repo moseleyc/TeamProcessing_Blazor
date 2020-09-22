@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ManagedAccountClasses.TeamSite
 {
@@ -8,6 +9,8 @@ namespace ManagedAccountClasses.TeamSite
         public string AccountNumber { get; set; }
         public string Notes { get; set; }
         public string EnteredBy { get; set; }
+
+        [DataType(DataType.Text)]
         public DateTime EnteredDate { get; set; }
     }
 }

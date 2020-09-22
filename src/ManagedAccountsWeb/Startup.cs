@@ -18,6 +18,7 @@ using ManagedAccountsWeb.Data;
 using System.IO;
 using ManagedAccountsWeb.Services;
 using System.Net.Http;
+using ManagedAccountsWeb.Data.Migrations;
 
 namespace ManagedAccountsWeb
 {
@@ -35,7 +36,12 @@ namespace ManagedAccountsWeb
         public void ConfigureServices(IServiceCollection services)
         {
             Console.WriteLine($"INFO: {Configuration.GetConnectionString("DefaultConnection")}: Directory {Directory.GetCurrentDirectory()}");
+
             services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(
+                    Configuration.GetConnectionString("DefaultConnection"))
+                );
+            services.AddDbContext<TeamSiteDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection"))
                 );
@@ -44,7 +50,7 @@ namespace ManagedAccountsWeb
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-            services.AddSingleton<ISpecialInstructionService, SpecialInstructionService>();
+            services.AddScoped<ISpecialInstructionService, SpecialInstructionService>();
 
             services.AddSingleton<WeatherForecastService>();
             
