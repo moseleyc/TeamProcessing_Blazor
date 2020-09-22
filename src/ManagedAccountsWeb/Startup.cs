@@ -44,15 +44,8 @@ namespace ManagedAccountsWeb
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+            services.AddSingleton<ISpecialInstructionService, SpecialInstructionService>();
 
-            services.AddHttpClient<ISpecialInstructionService>(client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:5003/");
-            })
-                .SetHandlerLifetime(TimeSpan.FromMinutes(1));
-            services.AddScoped<ISpecialInstructionService, SpecialInstructionService>();
-
-            //services.AddSingleton<IHttpClientFactory, HttpClientFactory>();
             services.AddSingleton<WeatherForecastService>();
             
         }

@@ -11,9 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{ABAEC1F9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataSource", "DataSource", "{158D1A94-A2C0-47C4-95A1-00D5C9A234D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedAccountsApi", "src\ManagedAccountsApi\ManagedAccountsApi.csproj", "{6BACDA1C-14B5-4298-B708-46053A1FAD84}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedAccountClassLibrary", "src\ManagedAccountClassLibrary\ManagedAccountClassLibrary.csproj", "{08B02D04-309E-459A-A898-72A1AF9DE8F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedAccountClassLibrary", "src\ManagedAccountClassLibrary\ManagedAccountClassLibrary.csproj", "{08B02D04-309E-459A-A898-72A1AF9DE8F7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagedAccountsWeb", "src\ManagedAccountsWeb\ManagedAccountsWeb.csproj", "{527718B3-A041-4927-8A82-9CBB660B53F9}"
 EndProject
@@ -23,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6BACDA1C-14B5-4298-B708-46053A1FAD84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BACDA1C-14B5-4298-B708-46053A1FAD84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6BACDA1C-14B5-4298-B708-46053A1FAD84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6BACDA1C-14B5-4298-B708-46053A1FAD84}.Release|Any CPU.Build.0 = Release|Any CPU
 		{08B02D04-309E-459A-A898-72A1AF9DE8F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{08B02D04-309E-459A-A898-72A1AF9DE8F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08B02D04-309E-459A-A898-72A1AF9DE8F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,7 +35,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{158D1A94-A2C0-47C4-95A1-00D5C9A234D9} = {5AE6D3FB-28EE-453B-AD41-876621A9337C}
-		{6BACDA1C-14B5-4298-B708-46053A1FAD84} = {5AE6D3FB-28EE-453B-AD41-876621A9337C}
 		{08B02D04-309E-459A-A898-72A1AF9DE8F7} = {5AE6D3FB-28EE-453B-AD41-876621A9337C}
 		{527718B3-A041-4927-8A82-9CBB660B53F9} = {5AE6D3FB-28EE-453B-AD41-876621A9337C}
 	EndGlobalSection

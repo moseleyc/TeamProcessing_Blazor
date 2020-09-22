@@ -1,7 +1,9 @@
 ﻿using ManagedAccountClasses.TeamSite;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -11,31 +13,46 @@ namespace ManagedAccountsWeb.Services
 {
     public class SpecialInstructionService : ISpecialInstructionService
     {
-        private readonly HttpClient _httpClient;
         private readonly ILogger _logger;
+        private List<SpecialInstruction> SpecialInstructions { get; set; }
 
-        public SpecialInstructionService(IHttpClientFactory httpClientFactory, ILogger<SpecialInstructionService> logger)
+        public SpecialInstructionService(ILogger<SpecialInstructionService> logger)
         {
-            _httpClient = httpClientFactory.CreateClient();
             _logger = logger;
+
+            SpecialInstructions = GetSpecialInstructionsInitialSetup();
         }
 
 
         public async Task<List<SpecialInstruction>> GetSpecialInstructionAsync()
         {
-            var response = await _httpClient.GetAsync("https://localhost:5003/managedaccounts/specialInstructions");
-            _logger.LogInformation($"IsSuccessful: {response.IsSuccessStatusCode}; Results: {response?.Content?.ReadAsStringAsync().Result}");
-            var specialInstructions = JsonConvert.DeserializeObject<List<SpecialInstruction>>(await response.Content.ReadAsStringAsync());
-
-            return specialInstructions;
+            return SpecialInstructions;
         }
 
         public async Task<bool> AddSpecialInstructionAsync(SpecialInstruction specialInstruction)
         {
-            var payload = JsonConvert.SerializeObject(specialInstruction);
-            HttpContent content = new StringContent(payload, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("https://localhost:5003/managedaccounts/specialInstructions", content);
-            return response.IsSuccessStatusCode;
+            SpecialInstructions.Add(specialInstruction);
+
+            if(SpecialInstructions.Any(x => x.Equals(specialInstruction)))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private List<SpecialInstruction> GetSpecialInstructionsInitialSetup()
+        {
+            return new List<SpecialInstruction>
+            {
+                new SpecialInstruction
+                {
+                    AccountNumber = "T00002A1",
+                    Notes = "Nothing to see here",
+                    EnteredBy = "hjunata@gmail.com",
+                    EnteredDate = DateTime.Now
+                }
+            };
         }
     }
 }
